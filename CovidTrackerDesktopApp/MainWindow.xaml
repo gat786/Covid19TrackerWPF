@@ -5,10 +5,11 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CovidTrackerDesktopApp"
         mc:Ignorable="d"
-        Title="Covid19 Tracker App" Height="450" Width="800">
+        Title="Covid19 Tracker App" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
         <Grid.ColumnDefinitions>
             
         </Grid.ColumnDefinitions>
+        <Label Content="Covid 19 Tracker" HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
     </Grid>
 </Window>
