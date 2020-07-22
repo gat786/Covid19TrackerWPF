@@ -1,4 +1,5 @@
-[
+{
+"list":[
   {
     "Country": "Barbados",
     "Slug": "barbados",
@@ -1240,3 +1241,4 @@
     "ISO2": "SD"
   }
 ]
+}

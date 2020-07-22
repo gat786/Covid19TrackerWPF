@@ -1,4 +1,5 @@
-﻿using CovidTrackerDesktopApp.Repositories;
+﻿using CovidTrackerDesktopApp.Model;
+using CovidTrackerDesktopApp.Repositories;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,7 +29,8 @@ namespace CovidTrackerDesktopApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            
+            var model = new CountriesModel();
+            model.GetCountriesNamesList();
         }
     }
 }

@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using CovidTrackerDesktopApp.Model;
+using Newtonsoft.Json;
 using RestSharp;
 using System;
 using System.Collections.Generic;
@@ -34,9 +35,11 @@ namespace CovidTrackerDesktopApp.Repositories
             
         }
 
-        public Tuple<bool,object> GetCountryWiseData()
+        public Tuple<bool,object> GetCountryWiseData(string countryName)
         {
             var restRequest = new RestRequest("");
+            var model = new CountriesModel();
+            model.GetCountriesNamesList();
             return new Tuple<bool, object>(true, new object());
         }
     }
