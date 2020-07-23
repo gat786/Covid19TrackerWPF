@@ -29,8 +29,15 @@ namespace CovidTrackerDesktopApp
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var model = new CountriesModel();
-            model.GetCountriesNamesList();
+            var repo = new CovidAPIRepo();
+            repo.GetSummary();
+            repo.GetCountryWiseData("India");
+            
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+
         }
     }
 }

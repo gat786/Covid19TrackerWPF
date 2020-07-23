@@ -5,11 +5,177 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:CovidTrackerDesktopApp"
         mc:Ignorable="d"
+        Background="#FFAEAEAE"
         Title="Covid19 Tracker App" Height="450" Width="800" Loaded="Window_Loaded">
     <Grid>
-        <Grid.ColumnDefinitions>
-            
-        </Grid.ColumnDefinitions>
-        <Label Content="Covid 19 Tracker" HorizontalAlignment="Left" Margin="31,23,0,0" VerticalAlignment="Top"/>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="1*"/>
+            <RowDefinition Height="0.5*"/>
+            <RowDefinition Height="4*"/>
+        </Grid.RowDefinitions>
+
+        <Label Grid.Row="0"
+               Content="Covid 19 Tracker App"
+               VerticalAlignment="Center" 
+               FontWeight="Bold" 
+               FontSize="24"
+               Padding="20,0,0,0"
+               />
+        <Grid Grid.Row="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="3*"/>
+                <ColumnDefinition Width="1*"/>
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="2*"/>
+                    <ColumnDefinition Width="1*"/>
+                </Grid.ColumnDefinitions>
+                <TextBox Grid.Column="0"
+                         VerticalAlignment="Center"
+                         Height="32"
+                         Margin="0,4,0,4"
+                         VerticalContentAlignment="Center"
+                         FontSize="16"/>
+                <Button Content="Search"
+                        Height="32"
+                        VerticalAlignment="Center"
+                        Grid.Column="1"
+                        Width="100"
+                        HorizontalAlignment="Left"
+                        Margin="4" Click="Button_Click"
+                />
+            </Grid>
+
+            <Grid Grid.Column="1"/>
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="20"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="1*"/>
+                <ColumnDefinition Width="20"/>
+            </Grid.ColumnDefinitions>
+            <Grid Grid.Column="1">
+                <StackPanel>
+                    <TextBlock Text="Global Data"
+                               Margin="8"
+                               Height="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="New Recoveries"
+                               Margin="8"
+                               Height="16" Foreground="#FF0DD600"/>
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16" Foreground="#FF0DD600"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Recoveries"
+                               Margin="8"
+                               Height="16" Foreground="#FF0DD600"/>
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16" Foreground="#FF0DD600"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="New Infections"
+                               Margin="8"
+                               Height="16"/>
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Infections"
+                               Margin="8"
+                               Height="16"/>
+
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="New Deaths"
+                                   Margin="8"
+                                   Height="16" Foreground="#FFFA1313"/>
+
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16" Foreground="#FFFA1313"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Deaths"
+                                   Margin="8"
+                                   Height="16" Foreground="#FFFA1313"/>
+
+                        <TextBlock Text="some_random_number"
+                                   Margin="8"
+                                   Height="16" Foreground="#FFFA1313"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+            <Grid Grid.Column="2">
+                <StackPanel>
+                    <TextBlock Text="Most Affected Country"
+                               Margin="8"
+                               Height="16"/>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Most Affected"
+                               Margin="8"
+                               Height="16"/>
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Recoveries"
+                               Margin="8"
+                               Height="16"/>
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="New Infections"
+                               Margin="8"
+                               Height="16"/>
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Infections"
+                               Margin="8"
+                               Height="16"/>
+
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="New Deaths"
+                                   Margin="8"
+                                   Height="16"/>
+
+                        <TextBlock Text="some_random_number"
+                               Margin="8"
+                               Height="16"/>
+                    </StackPanel>
+                    <StackPanel Orientation="Horizontal">
+                        <TextBlock Text="Total Deaths"
+                                   Margin="8"
+                                   Height="16"/>
+
+                        <TextBlock Text="some_random_number"
+                                   Margin="8"
+                                   Height="16"/>
+                    </StackPanel>
+                </StackPanel>
+            </Grid>
+        </Grid>
+
     </Grid>
 </Window>

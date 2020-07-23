@@ -63,32 +63,32 @@ namespace CovidTrackerDesktopApp.Properties {
         /// <summary>
         ///   Looks up a localized string similar to [
         ///  {
-        ///    &quot;Country&quot;: &quot;Barbados&quot;,
+        ///    &quot;CountryName&quot;: &quot;Barbados&quot;,
         ///    &quot;Slug&quot;: &quot;barbados&quot;,
         ///    &quot;ISO2&quot;: &quot;BB&quot;
         ///  },
         ///  {
-        ///    &quot;Country&quot;: &quot;Gibraltar&quot;,
+        ///    &quot;CountryName&quot;: &quot;Gibraltar&quot;,
         ///    &quot;Slug&quot;: &quot;gibraltar&quot;,
         ///    &quot;ISO2&quot;: &quot;GI&quot;
         ///  },
         ///  {
-        ///    &quot;Country&quot;: &quot;Lithuania&quot;,
+        ///    &quot;CountryName&quot;: &quot;Lithuania&quot;,
         ///    &quot;Slug&quot;: &quot;lithuania&quot;,
         ///    &quot;ISO2&quot;: &quot;LT&quot;
         ///  },
         ///  {
-        ///    &quot;Country&quot;: &quot;Malaysia&quot;,
+        ///    &quot;CountryName&quot;: &quot;Malaysia&quot;,
         ///    &quot;Slug&quot;: &quot;malaysia&quot;,
         ///    &quot;ISO2&quot;: &quot;MY&quot;
         ///  },
         ///  {
-        ///    &quot;Country&quot;: &quot;Nauru&quot;,
+        ///    &quot;CountryName&quot;: &quot;Nauru&quot;,
         ///    &quot;Slug&quot;: &quot;nauru&quot;,
         ///    &quot;ISO2&quot;: &quot;NR&quot;
         ///  },
         ///  {
-        ///    &quot;Country&quot;: &quot;Palestinian Territory&quot;,
+        ///    &quot;CountryName&quot;: &quot;Palestinian Territory&quot;,
         ///    &quot;Slug&quot;: &quot;palestine&quot;,
         ///    &quot;ISO2&quot;: &quot;PS&quot;
         ///  },
