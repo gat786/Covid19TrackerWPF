@@ -119,7 +119,7 @@
             </Grid>
             <Grid Grid.Column="2">
                 <StackPanel>
-                    <TextBlock Text="Most Affected Country"
+                    <TextBlock Text="Most Affected Countries"
                                Margin="8"
                                Height="16"/>
                     <StackPanel Orientation="Horizontal">

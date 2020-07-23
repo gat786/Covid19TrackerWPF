@@ -104,6 +104,7 @@
       <SubType>Designer</SubType>
     </ApplicationDefinition>
     <Compile Include="Model\CountriesModel.cs" />
+    <Compile Include="Model\CountryCovidDataModel.cs" />
     <Compile Include="Model\SummaryModel.cs" />
     <Compile Include="Repository\CountryListRepo.cs" />
     <Compile Include="Repository\CovidAPIRepo.cs" />
