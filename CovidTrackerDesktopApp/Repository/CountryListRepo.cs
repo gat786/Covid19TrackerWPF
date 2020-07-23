@@ -1,12 +1,12 @@
 ﻿using CovidTrackerDesktopApp.Model;
-using System.Text.Json;
-using System.Text.Json.Serialization;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using CovidTrackerDesktopApp.Properties;
+using System.Text.Json;
+using System.Text.Json.Serialization;
 
 namespace CovidTrackerDesktopApp.Repository
 {
@@ -23,7 +23,9 @@ namespace CovidTrackerDesktopApp.Repository
             var countryList = GetListOfCountries();
             List<string> countryNames = new List<string>();
             foreach(CountryDetail country in countryList)
-                countryNames.Add(country.CountryName);
+            {
+                countryNames.Add(country.Slug);
+            }
             return countryNames;
         }
     }

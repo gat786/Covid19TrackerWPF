@@ -26,13 +26,23 @@ namespace CovidTrackerDesktopApp
         {
             InitializeComponent();
         }
+        
+        CovidAPIRepo repo = new CovidAPIRepo();
+        string GlobalNewRecoveries, GlobalNewDeaths, GlobalNewInfections, GlobalTotalRecoveries, GlobalTotalDeaths, GlobalTotalInfections = 0.ToString();
 
         private void Window_Loaded(object sender, RoutedEventArgs e)
         {
-            var repo = new CovidAPIRepo();
-            repo.GetSummary();
-            repo.GetCountryWiseData("India");
-            
+            var summary = repo.GetSummary();
+            if (summary.Item1)
+            {
+                GlobalTotalDeaths = summary.Item2.Global.TotalDeaths.ToString();
+                GlobalTotalRecoveries = summary.Item2.Global.TotalRecovered.ToString();
+                GlobalTotalInfections = summary.Item2.Global.TotalConfirmed.ToString();
+
+                GlobalNewDeaths = summary.Item2.Global.NewDeaths.ToString();
+                GlobalNewRecoveries = summary.Item2.Global.NewRecovered.ToString();
+                GlobalNewInfections = summary.Item2.Global.NewConfirmed.ToString();
+            }
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)

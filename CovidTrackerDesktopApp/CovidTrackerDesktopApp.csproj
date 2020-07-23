@@ -103,9 +103,11 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Model\CountriesModel.cs" />
-    <Compile Include="Model\CountryCovidDataModel.cs" />
-    <Compile Include="Model\SummaryModel.cs" />
+    <Compile Include="Models\CountriesModel.cs" />
+    <Compile Include="Models\CountryCovidDataModel.cs" />
+    <Compile Include="Models\GlobalData.cs" />
+    <Compile Include="Models\MostAffectedCountries.cs" />
+    <Compile Include="Models\SummaryModel.cs" />
     <Compile Include="Repository\CountryListRepo.cs" />
     <Compile Include="Repository\CovidAPIRepo.cs" />
     <Page Include="MainWindow.xaml">
@@ -148,9 +150,7 @@
   <ItemGroup>
     <None Include="App.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="ViewModel\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <BootstrapperPackage Include=".NETFramework,Version=v4.7.2">
       <Visible>False</Visible>
