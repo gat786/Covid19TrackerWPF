@@ -6,29 +6,42 @@
         xmlns:local="clr-namespace:CovidTrackerDesktopApp"
         xmlns:models="clr-namespace:CovidTrackerDesktopApp.Model"
         mc:Ignorable="d"
-        Background="#FFAEAEAE"
+        Background="{DynamicResource GreyBackground}"
         Title="Covid19 Tracker App" Height="450" Width="800" Loaded="Window_Loaded">
     <Window.Resources>
+        <SolidColorBrush x:Key="GreyBackground" Color="#FFAEAEAE"/>
         <SolidColorBrush x:Key="GreenBrush" Color="#FF118909"/>
         <SolidColorBrush x:Key="RedBrush" Color="#FFC50000"/>
         <SolidColorBrush x:Key="BlueBrush" Color="#FF0048D7"/>
     </Window.Resources>
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="4*"/>
             <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
+        <StackPanel>
+            <Button Visibility="Collapsed"
+                    x:Name="GoBackButton"
+                    HorizontalAlignment="Left"
+                    Background="Transparent"
+                    BorderBrush="Transparent">
+                <TextBlock Margin="20,0,0,0">
+                   Go Back
+                </TextBlock>
+            </Button>
+        </StackPanel>
 
-        <Label Grid.Row="0"
+        <Label Grid.Row="1"
                Content="Covid 19 Tracker App"
                VerticalAlignment="Center" 
                FontWeight="Bold" 
                FontSize="24"
                Padding="20,0,0,0"
                />
-        <Grid Grid.Row="1">
+        <Grid Grid.Row="2">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="3*"/>
@@ -40,26 +53,78 @@
                     <ColumnDefinition Width="2*"/>
                     <ColumnDefinition Width="1*"/>
                 </Grid.ColumnDefinitions>
-                <TextBox Grid.Column="0"
-                         VerticalAlignment="Center"
-                         Height="32"
-                         Margin="0,4,0,4"
-                         VerticalContentAlignment="Center"
-                         FontSize="16"/>
-                <Button Content="Search"
-                        Height="32"
-                        VerticalAlignment="Center"
-                        Grid.Column="1"
-                        Width="100"
-                        HorizontalAlignment="Left"
-                        Margin="4" Click="Button_Click"
-                />
+                    <TextBox Grid.Column="0"
+                             ToolTip="Enter a Country Name"
+                             x:Name="SearchField"
+                             VerticalAlignment="Center"
+                             Margin="0,4,0,4"
+                             VerticalContentAlignment="Center"
+                             FontSize="16"/>
+                
+                    <StackPanel Grid.Column="1"
+                                Orientation="Horizontal">
+                        
+                    <Button Content="Search"
+                            Width="100"
+                            Margin="4" 
+                            MaxHeight="32"
+                            Click="Button_Click"/>
+
+                    <TextBlock Text="X"
+                               x:Name="ErrorLogo"
+                               Visibility="Collapsed"
+                               Foreground="Red"
+                               FontSize="16"
+                               VerticalAlignment="Center"
+                               Margin="10,0,10,0"
+                               >
+                        <TextBlock.ToolTip>
+                            <TextBlock>
+                                Make Sure you typed something before searching
+                                <LineBreak/>
+                                or The name was not found in the list 
+                                <LineBreak/>
+                                click Help for more info.
+                            </TextBlock>
+                        </TextBlock.ToolTip>
+                    </TextBlock>
+
+                    <Button
+                        Width="30"
+                        MaxHeight="32"
+                        ToolTip="The Name you enter must be one of the countries list we have. You can click on help to see the list"
+                        Margin="0,4,0,4" 
+                        Click="Button_Click_1">
+                        <StackPanel>
+                            <TextBlock>
+                                Help
+                            </TextBlock>
+                            <Popup IsOpen="False"
+                                   x:Name="CountryNamesPopUp">
+                                <Grid Height="100"
+                                      x:Name="PopupRootGrid"
+                                          Width="250"
+                                          Background="White">
+                                    <ScrollViewer>
+                                        <StackPanel x:Name="NamesOfCountriesSP">
+                                            <TextBlock>
+                                                    Here is a List of available country names
+                                            </TextBlock>
+                                        </StackPanel>
+                                    </ScrollViewer>
+                                </Grid>
+                            </Popup>
+                        </StackPanel>
+                    </Button>
+
+                </StackPanel>
+
             </Grid>
 
             <Grid Grid.Column="1"/>
         </Grid>
 
-        <Grid Grid.Row="2">
+        <Grid Grid.Row="3">
             <Grid.ColumnDefinitions>
                 <ColumnDefinition Width="20"/>
                 <ColumnDefinition Width="1*"/>
@@ -82,7 +147,7 @@
                         <TextBlock Text="New Recoveries"
                                Margin="8"
                                Height="16" Foreground="{DynamicResource GreenBrush}"/>
-                        <TextBlock x:Name="global_new_recoveries" Text="{Binding Path=GlobalNewRecoveries,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock x:Name="global_new_recoveries"
                                Margin="8"
                                Height="16" Foreground="{DynamicResource GreenBrush}"/>
                     </StackPanel>
@@ -90,7 +155,7 @@
                         <TextBlock Text="Total Recoveries"
                                Margin="8"
                                Height="16" Foreground="{DynamicResource GreenBrush}"/>
-                        <TextBlock x:Name="global_total_recoveries" Text="{Binding Path=GlobalTotalRecoveries,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock x:Name="global_total_recoveries" 
                                Margin="8"
                                Height="16" Foreground="{DynamicResource GreenBrush}"/>
                     </StackPanel>
@@ -98,7 +163,7 @@
                         <TextBlock Text="New Infections"
                                Margin="8"
                                Height="16" Foreground="{DynamicResource BlueBrush}"/>
-                        <TextBlock x:Name="global_new_infections" Text="{Binding Path=GlobalNewInfections,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock x:Name="global_new_infections" 
                                Margin="8"
                                Height="16" Foreground="{DynamicResource BlueBrush}"/>
                     </StackPanel>
@@ -107,7 +172,7 @@
                                Margin="8"
                                Height="16" Foreground="{DynamicResource BlueBrush}"/>
 
-                        <TextBlock x:Name="global_total_infections" Text="{Binding Path=GlobalTotalInfections,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock x:Name="global_total_infections" 
                                Margin="8"
                                Height="16" Foreground="{DynamicResource BlueBrush}"/>
                     </StackPanel>
@@ -116,7 +181,7 @@
                                    Margin="8"
                                    Height="16" Foreground="{DynamicResource RedBrush}"/>
 
-                        <TextBlock x:Name="global_new_deaths" Text="{Binding Path=GlobalNewDeaths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock x:Name="global_new_deaths" 
                                Margin="8"
                                Height="16" Foreground="{DynamicResource RedBrush}"/>
                     </StackPanel>
@@ -125,7 +190,7 @@
                                    Margin="8"
                                    Height="16" Foreground="{DynamicResource RedBrush}"/>
 
-                        <TextBlock x:Name="global_total_deaths" Text="{Binding Path=GlobalTotalDeaths,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                        <TextBlock x:Name="global_total_deaths"
                                    Margin="8"
                                    Height="16" Foreground="{DynamicResource RedBrush}"/>
                     </StackPanel>
@@ -138,7 +203,8 @@
                                FontWeight="Bold"
                                Height="16"/>
                     <StackPanel Orientation="Horizontal">
-                        <TextBlock x:Name="most_affected_1_name" Text="Most Affected"
+                        <TextBlock x:Name="most_affected_1_name" 
+                                   Text="Most Affected"
                                Margin="8"
                                Height="16"/>
                         <TextBlock x:Name="most_affected_1_count" Text="some_random_number"
@@ -191,16 +257,27 @@
                     </StackPanel>
                 </StackPanel>
             </Grid>
+
+            <Grid Grid.Row="1"
+                  Visibility="Collapsed"
+                  x:Name="SearchResultsGrid"
+                  Grid.Column="1"
+                  Grid.ColumnSpan="2"
+                  Background="{DynamicResource GreyBackground}">
+                
+            </Grid>
         </Grid>
 
-        <StackPanel Grid.Row="4" 
+        <StackPanel Grid.Row="5" 
                     HorizontalAlignment="Right"
                     Orientation="Horizontal">
             <Label Grid.Column="1" 
+                   x:Name="progress_text"
                    Content="Loading"
                    HorizontalAlignment="Right"
                    />
             <ProgressBar Grid.Column="1"
+                         x:Name="progress_bar"
                          Minimum="0"
                          Value="25"
                          Height="20"

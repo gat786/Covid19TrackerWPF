@@ -34,19 +34,19 @@ namespace CovidTrackerDesktopApp.Repositories
             
         }
 
-        public IEnumerable<Country> GetWorstHitCountries()
+        public List<Country> GetWorstHitCountries()
         {
             var summary = GetSummary();
             if (summary.Item1)
             {
                 var sorted = (summary.Item2 as SummaryModel).Countries.OrderByDescending(x => x.TotalConfirmed);
                 var top = sorted.Take(6);
-                return top;
+                return top.ToList();
             }
             return null;
         }
 
-        public Tuple<bool,object> GetCountryWiseData(string countryName)
+        public Tuple<bool, List<CountryPerDaySummary>> GetCountryWiseData(string countryName)
         {
             var listOfCountries = new CountryListRepo().GetCountryNames();
             Console.WriteLine(listOfCountries.Contains("india"));
@@ -63,20 +63,20 @@ namespace CovidTrackerDesktopApp.Repositories
                     Console.WriteLine("request went through successfully");
                     try
                     {
-                        return new Tuple<bool, object>(true, responseParsed.Data);
+                        return new Tuple<bool, List<CountryPerDaySummary>>(true, responseParsed.Data);
                     }
                     catch(Exception e)
                     {
                         Console.WriteLine($"{e.Message} happened");
                     }
-                    return new Tuple<bool, object>(false, null);
+                    return new Tuple<bool, List<CountryPerDaySummary>>(false, null);
                 }
                 else
                 {   
                     //successfully done with the request
                     Console.WriteLine("Request wasnt successful try again");
                     Console.WriteLine($"StatusCode returned was {responseParsed.StatusCode} {responseParsed.Content}");
-                    return new Tuple<bool, object>(false, null);
+                    return new Tuple<bool, List<CountryPerDaySummary>>(false, null);
                 }
                 
             }
@@ -84,7 +84,7 @@ namespace CovidTrackerDesktopApp.Repositories
             {
                 // name of country wasnt correct need to check again
                 Console.WriteLine("Name not in the country list");
-                return new Tuple<bool, object>(false, null);
+                return new Tuple<bool, List<CountryPerDaySummary>>(false, null);
             }
             
         }
