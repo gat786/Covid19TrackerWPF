@@ -13,8 +13,12 @@ Here is the mockup design ->
 
 1. Main Page Design 
    
+
 ![MainPage](./Designs/MainPage.png)
 
 2. Details Page Design 
 
 ![Details Page](./Designs/DetailsPage.png)
+
+This works and the working looks something like -
+![App working]("./Designs/recording.gif")
