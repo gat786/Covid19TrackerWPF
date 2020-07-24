@@ -28,7 +28,7 @@
                     x:Name="GoBackButton"
                     HorizontalAlignment="Left"
                     Background="Transparent"
-                    BorderBrush="Transparent">
+                    BorderBrush="Transparent" Click="GoBackButton_Click">
                 <TextBlock>
                    Go Back
                 </TextBlock>

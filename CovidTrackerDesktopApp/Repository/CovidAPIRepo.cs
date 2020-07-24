@@ -7,6 +7,7 @@ using RestSharp.Serialization.Json;
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Windows.Documents;
 
 namespace CovidTrackerDesktopApp.Repositories
@@ -17,10 +18,10 @@ namespace CovidTrackerDesktopApp.Repositories
         private RestClient _restclient = new RestClient(Covid19APIBaseUrl);
         private JsonDeserializer _deserializer = new JsonDeserializer();
 
-        public Tuple<bool, SummaryModel> GetSummary()
+        public async Task<Tuple<bool, SummaryModel>> GetSummary()
         {
             var restRequest = new RestRequest("summary");
-            var response = _restclient.Get(restRequest);
+            var response = await _restclient.ExecuteAsync(restRequest,Method.GET);
             if (response.IsSuccessful) {
                 var responseJsonDeserialized = _deserializer.Deserialize<SummaryModel>(response);
                 return new Tuple<bool, SummaryModel>(true, responseJsonDeserialized);
@@ -34,9 +35,9 @@ namespace CovidTrackerDesktopApp.Repositories
             
         }
 
-        public List<Country> GetWorstHitCountries()
+        public async Task<List<Country>> GetWorstHitCountries()
         {
-            var summary = GetSummary();
+            var summary = await GetSummary();
             if (summary.Item1)
             {
                 var sorted = (summary.Item2 as SummaryModel).Countries.OrderByDescending(x => x.TotalConfirmed);
@@ -46,7 +47,7 @@ namespace CovidTrackerDesktopApp.Repositories
             return null;
         }
 
-        public Tuple<bool, List<CountryPerDaySummary>> GetCountryWiseData(string countryName)
+        public async Task<Tuple<bool, List<CountryPerDaySummary>>> GetCountryWiseData(string countryName)
         {
             var listOfCountries = new CountryListRepo().GetCountryNames();
             Console.WriteLine(listOfCountries.Contains("india"));
@@ -55,7 +56,7 @@ namespace CovidTrackerDesktopApp.Repositories
                 Console.WriteLine("Going on with the request");
                 // name was correctly sent
                 var restRequest = new RestRequest($"country/{countryName}");
-                var responseParsed = _restclient.Execute<List<CountryPerDaySummary>>(restRequest);
+                var responseParsed = await _restclient.ExecuteAsync<List<CountryPerDaySummary>>(restRequest);
                 
                 if (responseParsed.IsSuccessful)
                 {

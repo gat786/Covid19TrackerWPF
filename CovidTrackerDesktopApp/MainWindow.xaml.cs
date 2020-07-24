@@ -24,7 +24,7 @@ namespace CovidTrackerDesktopApp
         List<TextBlock> WorstHitCountryName;
         List<TextBlock> WorstHitCountryCount;
 
-        private void Window_Loaded(object sender, RoutedEventArgs e)
+        private async void Window_Loaded(object sender, RoutedEventArgs e)
         {
             WorstHitCountryName = new List<TextBlock>()
             { 
@@ -56,7 +56,7 @@ namespace CovidTrackerDesktopApp
                 NamesOfCountriesSP.Children.Add(tb);
             }
 
-            var summary = repo.GetSummary();
+            var summary = await repo.GetSummary();
             if (summary.Item1)
             {
                 progress_bar.Value = 50;
@@ -76,7 +76,7 @@ namespace CovidTrackerDesktopApp
                 progress_text.Content = "Error";
             }
 
-            var worstAffectedData = repo.GetWorstHitCountries();
+            var worstAffectedData = await repo.GetWorstHitCountries();
             if (worstAffectedData != null) {
                 progress_bar.Value = 100;
                 progress_text.Content = "Loaded";
@@ -94,7 +94,7 @@ namespace CovidTrackerDesktopApp
             }
         }
 
-        private void Button_Click(object sender, RoutedEventArgs e)
+        private async void Button_Click(object sender, RoutedEventArgs e)
         {
             var queryString = SearchField.Text;
             progress_bar.Value = 25;
@@ -108,7 +108,7 @@ namespace CovidTrackerDesktopApp
                     Console.WriteLine("Country Name Found");
                     GoBackButton.Visibility = Visibility.Visible;
                     SearchResultsGrid.Visibility = Visibility.Visible;
-                    var dataForCountry = repo.GetCountryWiseData(queryString);
+                    var dataForCountry = await repo.GetCountryWiseData(queryString);
                     if (dataForCountry.Item1)
                     {
                         progress_bar.Value = 75;
@@ -146,6 +146,7 @@ namespace CovidTrackerDesktopApp
                         stackPanel.Children.Add(deathCasesTB);
                         stackPanel.Children.Add(confirmedCasesTB);
 
+                        grid.Children.Clear();
                         grid.Children.Add(stackPanel);
                         progress_bar.Value = 100;
                         progress_text.Content = "Completed";
@@ -165,6 +166,13 @@ namespace CovidTrackerDesktopApp
                 Console.WriteLine("Less than 2 charachters written");
                 ErrorLogo.Visibility = Visibility.Visible;
             }
+        }
+
+        private void GoBackButton_Click(object sender, RoutedEventArgs e)
+        {
+            SearchResultsGrid.Visibility = Visibility.Collapsed;
+            GoBackButton.Visibility = Visibility.Collapsed;
+            SearchField.Text = "";
         }
     }
 }
