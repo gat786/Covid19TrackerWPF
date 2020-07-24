@@ -18,6 +18,7 @@
             <RowDefinition Height="1*"/>
             <RowDefinition Height="0.5*"/>
             <RowDefinition Height="4*"/>
+            <RowDefinition Height="30"/>
         </Grid.RowDefinitions>
 
         <Label Grid.Row="0"
@@ -183,13 +184,32 @@
                                    Margin="8"
                                    Height="16"/>
 
-                        <TextBlock x:Name="most_affected_6_count" Text="some_random_number"
+                        <TextBlock x:Name="most_affected_6_count" 
+                                   Text="some_random_number"
                                    Margin="8"
                                    Height="16"/>
                     </StackPanel>
                 </StackPanel>
             </Grid>
         </Grid>
+
+        <StackPanel Grid.Row="4" 
+                    HorizontalAlignment="Right"
+                    Orientation="Horizontal">
+            <Label Grid.Column="1" 
+                   Content="Loading"
+                   HorizontalAlignment="Right"
+                   />
+            <ProgressBar Grid.Column="1"
+                         Minimum="0"
+                         Value="25"
+                         Height="20"
+                         Maximum="100"
+                         Width="100"
+                         Margin="2"
+                         HorizontalAlignment="Right"
+                         />
+        </StackPanel>
 
     </Grid>
 </Window>
