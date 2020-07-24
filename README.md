@@ -21,4 +21,5 @@ Here is the mockup design ->
 ![Details Page](./Designs/DetailsPage.png)
 
 This works and the working looks something like -
-![App working]("./Designs/recording.gif")
+
+![App working](./Designs/recording.gif)
