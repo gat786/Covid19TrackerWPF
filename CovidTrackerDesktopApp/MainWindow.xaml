@@ -24,11 +24,12 @@
         </Grid.RowDefinitions>
         <StackPanel>
             <Button Visibility="Collapsed"
+                    Margin="20,0,0,0"
                     x:Name="GoBackButton"
                     HorizontalAlignment="Left"
                     Background="Transparent"
                     BorderBrush="Transparent">
-                <TextBlock Margin="20,0,0,0">
+                <TextBlock>
                    Go Back
                 </TextBlock>
             </Button>

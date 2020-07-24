@@ -97,9 +97,12 @@ namespace CovidTrackerDesktopApp
         private void Button_Click(object sender, RoutedEventArgs e)
         {
             var queryString = SearchField.Text;
+            progress_bar.Value = 25;
+            progress_text.Content = "Loading";
             if (queryString.Length > 2) {
                 var countryRepo = new CountryListRepo();
                 var countryNames = countryRepo.GetCountryNames();
+                progress_bar.Value = 50;
                 if (countryNames.Contains(queryString)) {
                     ErrorLogo.Visibility = Visibility.Collapsed;
                     Console.WriteLine("Country Name Found");
@@ -108,10 +111,45 @@ namespace CovidTrackerDesktopApp
                     var dataForCountry = repo.GetCountryWiseData(queryString);
                     if (dataForCountry.Item1)
                     {
+                        progress_bar.Value = 75;
                         var CountryData = dataForCountry.Item2;
                         CountryData.Reverse();
+                        var latestData = CountryData[0];
+                        var grid = SearchResultsGrid as Grid;
+                        
+                        var countryNameTB = new TextBlock();
+                        countryNameTB.Text = latestData.Country;
+                        countryNameTB.FontSize = 16d;
+                        countryNameTB.FontWeight = FontWeight.FromOpenTypeWeight(10);
+                        countryNameTB.Margin = new Thickness(8);
 
+                        var activeCasesTB = new TextBlock();
+                        activeCasesTB.Text = $"Active Cases {latestData.Active}";
+                        activeCasesTB.Margin = new Thickness(8, 0, 8, 0);
 
+                        var recoveredCasesTB = new TextBlock();
+                        recoveredCasesTB.Text = $"Recovered Cases {latestData.Recovered}";
+                        recoveredCasesTB.Margin = new Thickness(8, 0, 8, 0);
+
+                        var deathCasesTB = new TextBlock();
+                        deathCasesTB.Text = $"Death Cases {latestData.Deaths}";
+                        deathCasesTB.Margin = new Thickness(8, 0, 8, 0);
+
+                        var confirmedCasesTB = new TextBlock();
+                        confirmedCasesTB.Text = $"Confirmed Cases {latestData.Confirmed}";
+                        confirmedCasesTB.Margin = new Thickness(8, 0, 8, 0);
+
+                        var stackPanel = new StackPanel();
+                        stackPanel.Children.Add(countryNameTB);
+                        stackPanel.Children.Add(activeCasesTB);
+                        stackPanel.Children.Add(recoveredCasesTB);
+                        stackPanel.Children.Add(deathCasesTB);
+                        stackPanel.Children.Add(confirmedCasesTB);
+
+                        grid.Children.Add(stackPanel);
+                        progress_bar.Value = 100;
+                        progress_text.Content = "Completed";
+                        progress_bar.Visibility = Visibility.Collapsed;
                     }
                     Console.WriteLine(dataForCountry.Item2[0].Date);
                 }
